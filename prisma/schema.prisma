@@ -1,0 +1,183 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id         String   @id @default(uuid())
+  firstName  String
+  lastName   String
+  middleName String?
+  email      String   @unique
+  role       Role     @default(ADMIN)
+  password   String
+  address    String?
+  avi        String?
+  createdAt  DateTime @default(now())
+  isActive   Boolean  @default(true)
+}
+
+model Teacher {
+  id             String           @id @default(uuid())
+  firstName      String
+  lastName       String
+  middleName     String?
+  phone          String
+  email          String           @unique
+  address        String?
+  role           Role             @default(TEACHER)
+  password       String
+  avi            String?
+  createdAt      DateTime         @default(now())
+  classes        TeacherClass[]
+  subjects       TeacherSubject[]
+  classTeacherOf Class[]
+  isActive       Boolean          @default(true)
+}
+
+model Student {
+  id            String           @id @default(uuid())
+  firstName     String
+  lastName      String
+  middleName    String
+  age           Int
+  dob           String
+  email         String           @unique
+  regNo         String           @unique
+  password      String
+  avi           String?
+  createdAt     DateTime         @default(now())
+  class         Class            @relation(fields: [classId], references: [id])
+  classId       String
+  admissionYear Session          @relation(fields: [sessionId], references: [id])
+  sessionId     String
+  subjects      StudentSubject[]
+  assessments   Assessment[]
+  isActive      Boolean          @default(true)
+}
+
+// Student / Subject junction Table
+model StudentSubject {
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId String
+  subject   Subject @relation(fields: [subjectId], references: [id])
+  subjectId String
+
+  @@id([studentId, subjectId])
+}
+
+// Class / Subject junction table
+model ClassSubject {
+  class     Class   @relation(fields: [classId], references: [id])
+  classId   String
+  subject   Subject @relation(fields: [subjectId], references: [id])
+  subjectId String
+
+  @@id([classId, subjectId])
+}
+
+//Class / Teacher join table
+model TeacherClass {
+  teachers  Teacher @relation(fields: [teacherId], references: [id])
+  teacherId String
+  classes   Class   @relation(fields: [classId], references: [id])
+  classId   String
+
+  @@id([teacherId, classId])
+}
+
+model Class {
+  id       String         @id @default(uuid())
+  name     String         @unique
+  faction  String
+  teachers TeacherClass[]
+
+  students  Student[]
+  subjects  ClassSubject[]
+  teacher   Teacher        @relation(fields: [teacherId], references: [id])
+  teacherId String
+  isActive  Boolean        @default(true)
+}
+
+//Teacher / Subject join Table
+model TeacherSubject {
+  subjects  Subject @relation(fields: [subjectId], references: [id])
+  subjectId String
+  teachers  Teacher @relation(fields: [teacherId], references: [id])
+  teacherId String
+
+  @@id([subjectId, teacherId])
+}
+
+model Subject {
+  id          String           @id @default(uuid())
+  name        String           @unique
+  teachers    TeacherSubject[]
+  assessments Assessment[]
+  students    StudentSubject[]
+  classes     ClassSubject[]
+}
+
+model Session {
+  id        String    @id @default(uuid())
+  year      String
+  start     DateTime
+  end       DateTime
+  terms     Term[]
+  students  Student[]
+  isCurrent Boolean   @default(false)
+}
+
+model Term {
+  id         String   @id @default(uuid())
+  termNumber Int
+  start      DateTime
+  end        DateTime
+  session    Session  @relation(fields: [sessionId], references: [id])
+  sessionId  String
+
+  @@unique([termNumber, sessionId])
+}
+
+model Assessment {
+  id         String      @id @default(uuid())
+  exam       Int         @default(0)
+  firstTest  Int         @default(0)
+  secondTest Int         @default(0)
+  project    Int         @default(0)
+  ca         Int?        @default(0)
+  total      Int         @default(0)
+  subject    Subject     @relation(fields: [subjectId], references: [id])
+  subjectId  String
+  student    Student     @relation(fields: [studentId], references: [id])
+  studentId  String
+  grade      GradeLetter @default(F)
+
+  @@unique([studentId, subjectId])
+}
+
+enum GradeLetter {
+  A
+  B
+  C
+  D
+  E
+  F
+}
+
+enum Role {
+  TEACHER
+  STUDENT
+  ADMIN
+}
