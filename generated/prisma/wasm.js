@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.8.2
- * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+ * Prisma Client JS version: 6.9.0
+ * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
  */
 Prisma.prismaVersion = {
-  client: "6.8.2",
-  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
+  client: "6.9.0",
+  engine: "81e4af48011447c3cc503a190e86995b66d2a28e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -161,13 +161,13 @@ exports.Prisma.AdminScalarFieldEnum = {
   password: 'password',
   address: 'address',
   avi: 'avi',
-  phone: 'phone',
-  isActive: 'isActive',
-  lastLogin: 'lastLogin',
-  schoolId: 'schoolId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  isActive: 'isActive',
   createdById: 'createdById',
+  lastLogin: 'lastLogin',
+  phone: 'phone',
+  schoolId: 'schoolId',
+  updatedAt: 'updatedAt',
   updatedById: 'updatedById'
 };
 
@@ -182,18 +182,18 @@ exports.Prisma.TeacherScalarFieldEnum = {
   role: 'role',
   password: 'password',
   avi: 'avi',
-  qualification: 'qualification',
-  specialization: 'specialization',
-  employeeId: 'employeeId',
-  salary: 'salary',
-  dateOfBirth: 'dateOfBirth',
-  hireDate: 'hireDate',
-  isActive: 'isActive',
-  lastLogin: 'lastLogin',
-  schoolId: 'schoolId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  isActive: 'isActive',
   createdById: 'createdById',
+  dateOfBirth: 'dateOfBirth',
+  employeeId: 'employeeId',
+  hireDate: 'hireDate',
+  lastLogin: 'lastLogin',
+  qualification: 'qualification',
+  salary: 'salary',
+  schoolId: 'schoolId',
+  specialization: 'specialization',
+  updatedAt: 'updatedAt',
   updatedById: 'updatedById'
 };
 
@@ -202,25 +202,25 @@ exports.Prisma.StudentScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   middleName: 'middleName',
-  dateOfBirth: 'dateOfBirth',
   email: 'email',
   regNo: 'regNo',
   password: 'password',
   avi: 'avi',
-  gender: 'gender',
-  bloodGroup: 'bloodGroup',
-  address: 'address',
-  phoneNumber: 'phoneNumber',
-  parentId: 'parentId',
-  isActive: 'isActive',
-  lastLogin: 'lastLogin',
-  schoolId: 'schoolId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  createdById: 'createdById',
-  updatedById: 'updatedById',
   classId: 'classId',
-  sessionId: 'sessionId'
+  sessionId: 'sessionId',
+  isActive: 'isActive',
+  address: 'address',
+  bloodGroup: 'bloodGroup',
+  createdById: 'createdById',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  lastLogin: 'lastLogin',
+  parentId: 'parentId',
+  phoneNumber: 'phoneNumber',
+  schoolId: 'schoolId',
+  updatedAt: 'updatedAt',
+  updatedById: 'updatedById'
 };
 
 exports.Prisma.ParentScalarFieldEnum = {
@@ -254,37 +254,37 @@ exports.Prisma.GradeScalarFieldEnum = {
 exports.Prisma.ClassScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  capacity: 'capacity',
+  teacherId: 'teacherId',
   isActive: 'isActive',
-  schoolId: 'schoolId',
-  gradeId: 'gradeId',
+  capacity: 'capacity',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  teacherId: 'teacherId'
+  gradeId: 'gradeId',
+  schoolId: 'schoolId',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   year: 'year',
-  startDate: 'startDate',
-  endDate: 'endDate',
   isCurrent: 'isCurrent',
+  createdAt: 'createdAt',
+  endDate: 'endDate',
   isActive: 'isActive',
   schoolId: 'schoolId',
-  createdAt: 'createdAt',
+  startDate: 'startDate',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TermScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   termNumber: 'termNumber',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  isCurrent: 'isCurrent',
-  isActive: 'isActive',
   sessionId: 'sessionId',
   createdAt: 'createdAt',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  isCurrent: 'isCurrent',
+  name: 'name',
+  startDate: 'startDate',
   updatedAt: 'updatedAt'
 };
 
@@ -292,11 +292,11 @@ exports.Prisma.SubjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
   code: 'code',
-  description: 'description',
-  isCore: 'isCore',
-  isActive: 'isActive',
-  schoolId: 'schoolId',
   createdAt: 'createdAt',
+  description: 'description',
+  isActive: 'isActive',
+  isCore: 'isCore',
+  schoolId: 'schoolId',
   updatedAt: 'updatedAt'
 };
 
@@ -306,19 +306,19 @@ exports.Prisma.AssessmentScalarFieldEnum = {
   firstTest: 'firstTest',
   secondTest: 'secondTest',
   project: 'project',
-  assignment: 'assignment',
   ca: 'ca',
   total: 'total',
-  grade: 'grade',
-  remark: 'remark',
-  position: 'position',
-  type: 'type',
-  maxScore: 'maxScore',
   subjectId: 'subjectId',
   studentId: 'studentId',
+  grade: 'grade',
+  assignment: 'assignment',
+  createdAt: 'createdAt',
+  maxScore: 'maxScore',
+  position: 'position',
+  remark: 'remark',
   sessionId: 'sessionId',
   termId: 'termId',
-  createdAt: 'createdAt',
+  type: 'type',
   updatedAt: 'updatedAt'
 };
 

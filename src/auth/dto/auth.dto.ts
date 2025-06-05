@@ -6,7 +6,7 @@ export class AdminSignUpAuthDto implements Prisma.AdminCreateInput {
   @IsNotEmpty({ message: 'Last Name is required' })
   lastName: string;
   middleName?: string | null | undefined;
-  @IsEmail({},{message : "Please provide a valid email address"})
+  @IsEmail({}, { message: 'Please provide a valid email address' })
   @IsNotEmpty({ message: 'Email is required' })
   email: string;
   role?: $Enums.Role | undefined;
@@ -19,5 +19,6 @@ export class AdminSignUpAuthDto implements Prisma.AdminCreateInput {
   isActive?: boolean | undefined;
   lastLogin?: string | Date | null | undefined;
   school: Prisma.SchoolCreateNestedOneWithoutAdminsInput;
+  createdBy?: Prisma.AdminCreateNestedOneWithoutCreatedAdminsInput | undefined;
 }
 export class AdminLoginAuthDto {}
