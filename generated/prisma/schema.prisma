@@ -71,12 +71,12 @@ model Admin {
   createdById     String?
   lastLogin       DateTime?
   phone           String?
-  schoolId        String
+  schoolId        String?
   updatedAt       DateTime         @updatedAt
   updatedById     String?
   createdBy       Admin?           @relation("CreatedAdmins", fields: [createdById], references: [id])
   createdAdmins   Admin[]          @relation("CreatedAdmins")
-  school          School           @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  school          School?          @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   updatedBy       Admin?           @relation("UpdatedAdmins", fields: [updatedById], references: [id])
   updatedAdmins   Admin[]          @relation("UpdatedAdmins")
   createdSchools  School[]         @relation("CreatedSchools")

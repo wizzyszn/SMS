@@ -1,25 +1,31 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
-import { AdminSignUpAuthDto } from './dto/auth.dto';
+import { AdminLoginAuthDto, AdminSignUpAuthDto } from './dto/auth.dto';
+
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
-  constructor(private readonly dbService: DatabaseService) {}
+  constructor(
+    private readonly dbService: DatabaseService,
+    private readonly jwtService: JwtService,
+  ) {}
   async signUpAdmin(payload: AdminSignUpAuthDto) {
     const [existingAdmin, existingSchool] = await Promise.all([
       this.dbService.admin.findFirst({
         where: {
           email: payload.email,
-          schoolId: payload.school.connect?.id,
+          schoolId: payload.school?.connect?.id,
         },
       }),
       this.dbService.school.findFirst({
         where: {
-          id: payload.school.connect?.id,
+          id: payload.school?.connect?.id,
         },
       }),
     ]);
@@ -71,5 +77,36 @@ export class AuthService {
         lastLogin: true,
       },
     });
+  }
+  async loginSuperAdmin(payload: AdminLoginAuthDto) {
+    const admin = await this.dbService.admin.findFirst({
+      where: {
+        email: payload.email,
+      },
+    });
+    if (!admin) {
+      throw new ConflictException('Invalid credentials');
+    }
+    const retrievedPassword = admin.password;
+    const isPasswordValid = await bcrypt.compare(
+      payload.password,
+      retrievedPassword,
+    );
+    if (!isPasswordValid) {
+      throw new BadRequestException('Invalid credentials');
+    }
+    const jwtPayload = {
+      id: admin.id,
+      email: admin.email,
+      role: admin.role,
+    };
+    return {
+      id : admin.id,
+      avi : admin.avi,
+      email: admin.email,
+      firstName: admin.firstName,
+      lastName: admin.lastName,
+      access_token: this.jwtService.sign(jwtPayload),
+    };
   }
 }

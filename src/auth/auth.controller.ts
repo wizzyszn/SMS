@@ -10,7 +10,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AdminSignUpAuthDto } from './dto/auth.dto';
+import { AdminLoginAuthDto, AdminSignUpAuthDto } from './dto/auth.dto';
 import { Roles } from 'src/decorators/roles';
 import { Role } from 'src/global/types';
 import { RolesGuard } from 'src/guards/roles';
@@ -47,15 +47,19 @@ export class AuthController {
       },
     },
   })
-  @Post('create/admin')
+  @Post('register/admin')
   @UseGuards(RolesGuard)
   @Roles(Role.SUPER_ADMIN)
   async createAdmin(@Body(ValidationPipe) payload: AdminSignUpAuthDto) {
     return await this.authService.signUpAdmin(payload);
   }
-  @Post('create/super')
+  @Post('register/super')
   async createSuperAdmin(@Body(ValidationPipe) payload: AdminSignUpAuthDto) {
     return await this.authService.signUpSuperAdmin(payload);
+  }
+  @Post('login/super')
+  async loginSuperAdmin(@Body(ValidationPipe) payload: AdminLoginAuthDto) {
+    return await this.authService.loginSuperAdmin(payload);
   }
 
   @Get()

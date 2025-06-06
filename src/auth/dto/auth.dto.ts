@@ -18,7 +18,14 @@ export class AdminSignUpAuthDto implements Prisma.AdminCreateInput {
   phone?: string | null | undefined;
   isActive?: boolean | undefined;
   lastLogin?: string | Date | null | undefined;
-  school: Prisma.SchoolCreateNestedOneWithoutAdminsInput;
   createdBy?: Prisma.AdminCreateNestedOneWithoutCreatedAdminsInput | undefined;
+  school?: Prisma.SchoolCreateNestedOneWithoutAdminsInput | undefined;
 }
-export class AdminLoginAuthDto {}
+export class AdminLoginAuthDto {
+  @IsNotEmpty({ message: 'Email is required' })
+  @IsEmail({}, { message: 'Please provide a valid Email Address' })
+  email: string;
+  @IsStrongPassword()
+  @IsNotEmpty()
+  password: string;
+}

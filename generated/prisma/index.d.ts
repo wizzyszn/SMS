@@ -6051,7 +6051,7 @@ export namespace Prisma {
     createdById: string | null
     lastLogin: Date | null
     phone: string | null
-    schoolId: string
+    schoolId: string | null
     updatedAt: Date
     updatedById: string | null
     _count: AdminCountAggregateOutputType | null
@@ -6093,7 +6093,7 @@ export namespace Prisma {
     updatedById?: boolean
     createdBy?: boolean | Admin$createdByArgs<ExtArgs>
     createdAdmins?: boolean | Admin$createdAdminsArgs<ExtArgs>
-    school?: boolean | SchoolDefaultArgs<ExtArgs>
+    school?: boolean | Admin$schoolArgs<ExtArgs>
     updatedBy?: boolean | Admin$updatedByArgs<ExtArgs>
     updatedAdmins?: boolean | Admin$updatedAdminsArgs<ExtArgs>
     createdSchools?: boolean | Admin$createdSchoolsArgs<ExtArgs>
@@ -6126,7 +6126,7 @@ export namespace Prisma {
     updatedAt?: boolean
     updatedById?: boolean
     createdBy?: boolean | Admin$createdByArgs<ExtArgs>
-    school?: boolean | SchoolDefaultArgs<ExtArgs>
+    school?: boolean | Admin$schoolArgs<ExtArgs>
     updatedBy?: boolean | Admin$updatedByArgs<ExtArgs>
   }, ExtArgs["result"]["admin"]>
 
@@ -6149,7 +6149,7 @@ export namespace Prisma {
     updatedAt?: boolean
     updatedById?: boolean
     createdBy?: boolean | Admin$createdByArgs<ExtArgs>
-    school?: boolean | SchoolDefaultArgs<ExtArgs>
+    school?: boolean | Admin$schoolArgs<ExtArgs>
     updatedBy?: boolean | Admin$updatedByArgs<ExtArgs>
   }, ExtArgs["result"]["admin"]>
 
@@ -6177,7 +6177,7 @@ export namespace Prisma {
   export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | Admin$createdByArgs<ExtArgs>
     createdAdmins?: boolean | Admin$createdAdminsArgs<ExtArgs>
-    school?: boolean | SchoolDefaultArgs<ExtArgs>
+    school?: boolean | Admin$schoolArgs<ExtArgs>
     updatedBy?: boolean | Admin$updatedByArgs<ExtArgs>
     updatedAdmins?: boolean | Admin$updatedAdminsArgs<ExtArgs>
     createdSchools?: boolean | Admin$createdSchoolsArgs<ExtArgs>
@@ -6192,12 +6192,12 @@ export namespace Prisma {
   }
   export type AdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | Admin$createdByArgs<ExtArgs>
-    school?: boolean | SchoolDefaultArgs<ExtArgs>
+    school?: boolean | Admin$schoolArgs<ExtArgs>
     updatedBy?: boolean | Admin$updatedByArgs<ExtArgs>
   }
   export type AdminIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | Admin$createdByArgs<ExtArgs>
-    school?: boolean | SchoolDefaultArgs<ExtArgs>
+    school?: boolean | Admin$schoolArgs<ExtArgs>
     updatedBy?: boolean | Admin$updatedByArgs<ExtArgs>
   }
 
@@ -6206,7 +6206,7 @@ export namespace Prisma {
     objects: {
       createdBy: Prisma.$AdminPayload<ExtArgs> | null
       createdAdmins: Prisma.$AdminPayload<ExtArgs>[]
-      school: Prisma.$SchoolPayload<ExtArgs>
+      school: Prisma.$SchoolPayload<ExtArgs> | null
       updatedBy: Prisma.$AdminPayload<ExtArgs> | null
       updatedAdmins: Prisma.$AdminPayload<ExtArgs>[]
       createdSchools: Prisma.$SchoolPayload<ExtArgs>[]
@@ -6233,7 +6233,7 @@ export namespace Prisma {
       createdById: string | null
       lastLogin: Date | null
       phone: string | null
-      schoolId: string
+      schoolId: string | null
       updatedAt: Date
       updatedById: string | null
     }, ExtArgs["result"]["admin"]>
@@ -6632,7 +6632,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     createdBy<T extends Admin$createdByArgs<ExtArgs> = {}>(args?: Subset<T, Admin$createdByArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     createdAdmins<T extends Admin$createdAdminsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$createdAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    school<T extends SchoolDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SchoolDefaultArgs<ExtArgs>>): Prisma__SchoolClient<$Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    school<T extends Admin$schoolArgs<ExtArgs> = {}>(args?: Subset<T, Admin$schoolArgs<ExtArgs>>): Prisma__SchoolClient<$Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     updatedBy<T extends Admin$updatedByArgs<ExtArgs> = {}>(args?: Subset<T, Admin$updatedByArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     updatedAdmins<T extends Admin$updatedAdminsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$updatedAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdSchools<T extends Admin$createdSchoolsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$createdSchoolsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7125,6 +7125,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin.school
+   */
+  export type Admin$schoolArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the School
+     */
+    select?: SchoolSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the School
+     */
+    omit?: SchoolOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SchoolInclude<ExtArgs> | null
+    where?: SchoolWhereInput
   }
 
   /**
@@ -26213,12 +26232,12 @@ export namespace Prisma {
     createdById?: StringNullableFilter<"Admin"> | string | null
     lastLogin?: DateTimeNullableFilter<"Admin"> | Date | string | null
     phone?: StringNullableFilter<"Admin"> | string | null
-    schoolId?: StringFilter<"Admin"> | string
+    schoolId?: StringNullableFilter<"Admin"> | string | null
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
     updatedById?: StringNullableFilter<"Admin"> | string | null
     createdBy?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     createdAdmins?: AdminListRelationFilter
-    school?: XOR<SchoolScalarRelationFilter, SchoolWhereInput>
+    school?: XOR<SchoolNullableScalarRelationFilter, SchoolWhereInput> | null
     updatedBy?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     updatedAdmins?: AdminListRelationFilter
     createdSchools?: SchoolListRelationFilter
@@ -26246,7 +26265,7 @@ export namespace Prisma {
     createdById?: SortOrderInput | SortOrder
     lastLogin?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
-    schoolId?: SortOrder
+    schoolId?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     updatedById?: SortOrderInput | SortOrder
     createdBy?: AdminOrderByWithRelationInput
@@ -26282,12 +26301,12 @@ export namespace Prisma {
     createdById?: StringNullableFilter<"Admin"> | string | null
     lastLogin?: DateTimeNullableFilter<"Admin"> | Date | string | null
     phone?: StringNullableFilter<"Admin"> | string | null
-    schoolId?: StringFilter<"Admin"> | string
+    schoolId?: StringNullableFilter<"Admin"> | string | null
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
     updatedById?: StringNullableFilter<"Admin"> | string | null
     createdBy?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     createdAdmins?: AdminListRelationFilter
-    school?: XOR<SchoolScalarRelationFilter, SchoolWhereInput>
+    school?: XOR<SchoolNullableScalarRelationFilter, SchoolWhereInput> | null
     updatedBy?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     updatedAdmins?: AdminListRelationFilter
     createdSchools?: SchoolListRelationFilter
@@ -26315,7 +26334,7 @@ export namespace Prisma {
     createdById?: SortOrderInput | SortOrder
     lastLogin?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
-    schoolId?: SortOrder
+    schoolId?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     updatedById?: SortOrderInput | SortOrder
     _count?: AdminCountOrderByAggregateInput
@@ -26341,7 +26360,7 @@ export namespace Prisma {
     createdById?: StringNullableWithAggregatesFilter<"Admin"> | string | null
     lastLogin?: DateTimeNullableWithAggregatesFilter<"Admin"> | Date | string | null
     phone?: StringNullableWithAggregatesFilter<"Admin"> | string | null
-    schoolId?: StringWithAggregatesFilter<"Admin"> | string
+    schoolId?: StringNullableWithAggregatesFilter<"Admin"> | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
     updatedById?: StringNullableWithAggregatesFilter<"Admin"> | string | null
   }
@@ -28011,7 +28030,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -28039,7 +28058,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -28071,7 +28090,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -28099,7 +28118,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -28129,7 +28148,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
   }
@@ -28166,7 +28185,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -30026,6 +30045,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type SchoolNullableScalarRelationFilter = {
+    is?: SchoolWhereInput | null
+    isNot?: SchoolWhereInput | null
   }
 
   export type SchoolListRelationFilter = {
@@ -31893,10 +31917,12 @@ export namespace Prisma {
     deleteMany?: AdminScalarWhereInput | AdminScalarWhereInput[]
   }
 
-  export type SchoolUpdateOneRequiredWithoutAdminsNestedInput = {
+  export type SchoolUpdateOneWithoutAdminsNestedInput = {
     create?: XOR<SchoolCreateWithoutAdminsInput, SchoolUncheckedCreateWithoutAdminsInput>
     connectOrCreate?: SchoolCreateOrConnectWithoutAdminsInput
     upsert?: SchoolUpsertWithoutAdminsInput
+    disconnect?: SchoolWhereInput | boolean
+    delete?: SchoolWhereInput | boolean
     connect?: SchoolWhereUniqueInput
     update?: XOR<XOR<SchoolUpdateToOneWithWhereWithoutAdminsInput, SchoolUpdateWithoutAdminsInput>, SchoolUncheckedUpdateWithoutAdminsInput>
   }
@@ -34180,7 +34206,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     updatedSchools?: SchoolCreateNestedManyWithoutUpdatedByInput
@@ -34207,7 +34233,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -34243,7 +34269,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -34270,7 +34296,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -34568,7 +34594,7 @@ export namespace Prisma {
     createdById?: StringNullableFilter<"Admin"> | string | null
     lastLogin?: DateTimeNullableFilter<"Admin"> | Date | string | null
     phone?: StringNullableFilter<"Admin"> | string | null
-    schoolId?: StringFilter<"Admin"> | string
+    schoolId?: StringNullableFilter<"Admin"> | string | null
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
     updatedById?: StringNullableFilter<"Admin"> | string | null
   }
@@ -34732,7 +34758,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     updatedSchools?: SchoolUpdateManyWithoutUpdatedByNestedInput
@@ -34759,7 +34785,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -34801,7 +34827,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -34828,7 +34854,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -35052,7 +35078,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -35079,7 +35105,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -35168,7 +35194,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -35195,7 +35221,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -35242,7 +35268,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -35269,7 +35295,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -35370,7 +35396,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -35397,7 +35423,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -35427,7 +35453,7 @@ export namespace Prisma {
     phone?: string | null
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -35455,7 +35481,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     updatedAdmins?: AdminUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -35490,7 +35516,7 @@ export namespace Prisma {
     phone?: string | null
     updatedAt?: Date | string
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -35517,7 +35543,7 @@ export namespace Prisma {
     isActive?: boolean
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -35612,7 +35638,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
     updatedSchools?: SchoolCreateNestedManyWithoutUpdatedByInput
@@ -35639,7 +35665,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -35675,7 +35701,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
     updatedSchools?: SchoolCreateNestedManyWithoutUpdatedByInput
@@ -35702,7 +35728,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
     updatedAdmins?: AdminUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -36213,7 +36239,7 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -36241,7 +36267,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAdmins?: AdminUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -36358,7 +36384,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
     updatedSchools?: SchoolUpdateManyWithoutUpdatedByNestedInput
@@ -36385,7 +36411,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -36637,7 +36663,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -36664,7 +36690,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -36753,7 +36779,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -36780,7 +36806,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -36887,7 +36913,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -36914,7 +36940,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -37015,7 +37041,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -37042,7 +37068,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -37244,7 +37270,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -37271,7 +37297,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -37430,7 +37456,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdBy?: AdminCreateNestedOneWithoutCreatedAdminsInput
     createdAdmins?: AdminCreateNestedManyWithoutCreatedByInput
-    school: SchoolCreateNestedOneWithoutAdminsInput
+    school?: SchoolCreateNestedOneWithoutAdminsInput
     updatedBy?: AdminCreateNestedOneWithoutUpdatedAdminsInput
     updatedAdmins?: AdminCreateNestedManyWithoutUpdatedByInput
     createdSchools?: SchoolCreateNestedManyWithoutCreatedByInput
@@ -37457,7 +37483,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
     createdAdmins?: AdminUncheckedCreateNestedManyWithoutCreatedByInput
@@ -37639,7 +37665,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -37666,7 +37692,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -37849,7 +37875,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -37876,7 +37902,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -41752,7 +41778,7 @@ export namespace Prisma {
     isActive?: boolean
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
     updatedById?: string | null
   }
@@ -41772,7 +41798,7 @@ export namespace Prisma {
     createdById?: string | null
     lastLogin?: Date | string | null
     phone?: string | null
-    schoolId: string
+    schoolId?: string | null
     updatedAt?: Date | string
   }
 
@@ -41950,7 +41976,7 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedBy?: AdminUpdateOneWithoutUpdatedAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
@@ -41977,7 +42003,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -42006,7 +42032,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedById?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -42028,7 +42054,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: AdminUpdateOneWithoutCreatedAdminsNestedInput
     createdAdmins?: AdminUpdateManyWithoutCreatedByNestedInput
-    school?: SchoolUpdateOneRequiredWithoutAdminsNestedInput
+    school?: SchoolUpdateOneWithoutAdminsNestedInput
     updatedAdmins?: AdminUpdateManyWithoutUpdatedByNestedInput
     createdSchools?: SchoolUpdateManyWithoutCreatedByNestedInput
     updatedSchools?: SchoolUpdateManyWithoutUpdatedByNestedInput
@@ -42055,7 +42081,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAdmins?: AdminUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedAdmins?: AdminUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -42084,7 +42110,7 @@ export namespace Prisma {
     createdById?: NullableStringFieldUpdateOperationsInput | string | null
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
-    schoolId?: StringFieldUpdateOperationsInput | string
+    schoolId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

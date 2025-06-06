@@ -16,6 +16,7 @@ export class RolesGuard implements CanActivate {
       ROLES_KEY,
       [context.getHandler(), context.getClass()],
     );
+
     if (!requiredRoles) {
       return true;
     }
@@ -25,10 +26,11 @@ export class RolesGuard implements CanActivate {
       return false;
     }
     try {
-      const payload = this.jwtService.verify(token); // Add type safety here later
+      const payload = this.jwtService.verify(token.trim()); // Add type safety here later
+
       const role = payload.role;
       return requiredRoles.includes(role);
-    } catch {
+    } catch (err) {
       return false;
     }
   }
