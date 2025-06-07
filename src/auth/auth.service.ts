@@ -101,8 +101,35 @@ export class AuthService {
       role: admin.role,
     };
     return {
-      id : admin.id,
-      avi : admin.avi,
+      id: admin.id,
+      avi: admin.avi,
+      email: admin.email,
+      firstName: admin.firstName,
+      lastName: admin.lastName,
+      access_token: this.jwtService.sign(jwtPayload),
+    };
+  }
+  async loginAdmin(payload: AdminLoginAuthDto) {
+    const admin = await this.dbService.admin.findFirst({
+      where: {
+        email: payload.email,
+      },
+    });
+    if (!admin) {
+      throw new ConflictException('Invalid Credentials');
+    }
+    const isPasswordValid = bcrypt.compare(payload.password, admin.password);
+    if (!isPasswordValid) {
+      throw new BadRequestException('Invalid Exception');
+    }
+    const jwtPayload = {
+      role: 'ADMIN',
+      id: admin.id,
+      email: admin.email,
+    };
+    return {
+      id: admin.id,
+      avi: admin.avi,
       email: admin.email,
       firstName: admin.firstName,
       lastName: admin.lastName,

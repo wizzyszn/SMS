@@ -61,7 +61,10 @@ export class AuthController {
   async loginSuperAdmin(@Body(ValidationPipe) payload: AdminLoginAuthDto) {
     return await this.authService.loginSuperAdmin(payload);
   }
-
+  @Post("login/admin")
+  async loginAdmin(@Body(ValidationPipe) payload : AdminLoginAuthDto) {
+    return await this.authService.loginAdmin(payload)
+  }
   @Get()
   findAll() {
     return;

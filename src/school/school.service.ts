@@ -2,7 +2,8 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateSchoolDto } from './dto/create-school.dto';
 import { UpdateSchoolDto } from './dto/update-school.dto';
 import { DatabaseService } from 'src/database/database.service';
-
+import type { StructuredResponse } from '../global/types';
+import { Prisma } from 'generated/prisma';
 @Injectable()
 export class SchoolService {
   constructor(private readonly dbService: DatabaseService) {}
@@ -17,13 +18,19 @@ export class SchoolService {
         'This School already exists in our database.',
       );
     }
-    return await this.dbService.school.create({
+    const data = await this.dbService.school.create({
       data: createSchoolDto,
     });
+    return {
+      ...data,
+      message: 'School created Successfully',
+    };
   }
 
-  findAll() {
-    return `This action returns all school`;
+  async findAll() {
+    const schools = await this.dbService.school.findMany();
+
+    return schools;
   }
 
   findOne(id: number) {
@@ -34,7 +41,11 @@ export class SchoolService {
     return `This action updates a #${id} school`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} school`;
+  async remove(id: string) {
+    return await this.dbService.school.delete({
+      where: {
+        id,
+      },
+    });
   }
 }

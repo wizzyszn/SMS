@@ -15,6 +15,7 @@ import { UpdateSchoolDto } from './dto/update-school.dto';
 import { RolesGuard } from 'src/guards/roles';
 import { Role } from 'generated/prisma';
 import { Roles } from 'src/decorators/roles';
+import { AuthToken } from 'src/decorators/token';
 
 @Controller('school')
 export class SchoolController {
@@ -28,8 +29,10 @@ export class SchoolController {
   }
 
   @Get()
-  findAll() {
-    return this.schoolService.findAll();
+  @UseGuards(RolesGuard)
+  @Roles(Role.SUPER_ADMIN)
+  async findAll() {
+    return await this.schoolService.findAll();
   }
 
   @Get(':id')
@@ -44,6 +47,6 @@ export class SchoolController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.schoolService.remove(+id);
+    return this.schoolService.remove(id);
   }
 }

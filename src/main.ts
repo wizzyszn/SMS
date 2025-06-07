@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { StandardLoggerService } from './logger/logger.service';
 import { GlobalExceptionFilter } from './common/filters/global-exception-filters';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ResponseInterceptor } from './interceptors/responseInterceptor';
 
 async function bootstrap() {
   try {
@@ -14,6 +15,7 @@ async function bootstrap() {
     const logger = app.get(StandardLoggerService);
     app.useLogger(logger);
     app.useGlobalFilters(new GlobalExceptionFilter(logger));
+    app.useGlobalInterceptors(new ResponseInterceptor());
     const swaggerConfig = new DocumentBuilder()
       .setTitle('School Management System')
       .setDescription('')
