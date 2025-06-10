@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 import { SchoolService } from './school.service';
 import { CreateSchoolDto } from './dto/create-school.dto';
@@ -41,12 +42,22 @@ export class SchoolController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSchoolDto: UpdateSchoolDto) {
-    return this.schoolService.update(+id, updateSchoolDto);
+  @UseGuards(RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPER_ADMIN)
+  update(@Param('id') id: string, @Body(ValidationPipe) updateSchoolDto: UpdateSchoolDto) {
+    return this.schoolService.update(id, updateSchoolDto);
   }
 
   @Delete(':id')
+  @UseGuards(RolesGuard)
+  @Roles(Role.SUPER_ADMIN)
   remove(@Param('id') id: string) {
     return this.schoolService.remove(id);
+  }
+  @Patch(':id/status')
+  @UseGuards(RolesGuard)
+  @Roles(Role.SUPER_ADMIN)
+  status(@Param('id') id: string, @Query('status') status: string) {
+    return this.schoolService.status(id, status);
   }
 }
